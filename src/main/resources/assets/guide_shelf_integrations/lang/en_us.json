@@ -1,0 +1,6 @@
+{
+  "guide_shelf_integrations.ponder": "Ponder Library",
+  "guide_shelf_integrations.oracle": "Oracle Encyclopedia",
+  "guide_shelf_integrations.wiki": "%s · Oracle",
+  "guide_shelf_integrations.failed": "Could not open %s. The provider may still be reloading; see the log."
+}

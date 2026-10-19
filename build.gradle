@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.74'
+}
+group = 'io.github.hsunxl'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+neoForge {
+    version = '21.1.259'
+    mods { guide_shelf_integrations { sourceSet sourceSets.main } }
+    runs { client { client() }; server { server() } }
+}
+repositories { mavenCentral(); maven { url = 'https://api.modrinth.com/maven' } }
+dependencies {
+    if (providers.gradleProperty('guideShelfJar').isPresent()) {
+        compileOnly files(providers.gradleProperty('guideShelfJar').get())
+        runtimeOnly files(providers.gradleProperty('guideShelfJar').get())
+    } else {
+        compileOnly 'maven.modrinth:guide-shelf:rfpYVBCq'
+        runtimeOnly 'maven.modrinth:guide-shelf:rfpYVBCq'
+    }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Jar).configureEach { from('LICENSE') }
+tasks.register('coreTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'io.github.hsunxl.guideshelf.IntegrationTest'
+    enableAssertions = true
+}
+tasks.named('check') { dependsOn 'coreTest' }

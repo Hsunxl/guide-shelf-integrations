@@ -1,0 +1,6 @@
+{
+  "guide_shelf_integrations.ponder": "Ponder 演示库",
+  "guide_shelf_integrations.oracle": "Oracle 百科总目录",
+  "guide_shelf_integrations.wiki": "%s · Oracle 百科",
+  "guide_shelf_integrations.failed": "无法打开 %s，指南可能仍在加载，请查看日志。"
+}
